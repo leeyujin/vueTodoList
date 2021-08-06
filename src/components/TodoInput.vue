@@ -4,15 +4,27 @@
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn" ></i>
     </span>
+
+    <modal v-if="showModal" @close="showModal = false">
+    <!-- slot : 특정 컴포넌트의 ui 재정의 가능 -->
+      <h3 slot="header">
+        경고!
+        <i class="closeModalBtn fas fa-times" @click="showModal=false"></i>
+      </h3>
+      <div slot="body">내용을 입력하세요</div>
+      <div slot="footer">-</div>
+    </modal>
   </div>
 </template>
 
 <script>
+import Modal from "@/components/common/Modal";
 export default {
   name : 'TodoInput',
   data : function (){
     return {
-      newTodoItem : ''
+      newTodoItem : '',
+      showModal: false
     }
   },
   methods : {
@@ -20,11 +32,16 @@ export default {
       if( this.newTodoItem !== ''){
         this.$emit('passItem', this.newTodoItem);
         this.clearInput();
+      }else{
+        this.showModal = !this.showModal;
       }
     },
     clearInput : function(){
       this.newTodoItem='';
     }
+  },
+  components : {
+    Modal
   }
 }
 </script>
@@ -54,4 +71,8 @@ input:focus {
   color: white;
   vertical-align: middle;
 }
+.closeModalBtn{
+  color:#42b983;
+}
+
 </style>
