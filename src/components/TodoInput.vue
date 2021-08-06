@@ -18,8 +18,7 @@ export default {
   methods : {
     addTodo : function (){
       if( this.newTodoItem !== ''){
-        var obj = {item : this.newTodoItem, completed : false}
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.$emit('passItem', this.newTodoItem);
         this.clearInput();
       }
     },
