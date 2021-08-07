@@ -1,4 +1,4 @@
-# vue4
+# vueTodoList
 
 - 인프런 'Vue.js 중급 강좌'를 수강하며 정리한 내용입니다
 [강의링크](https://www.inflearn.com/course/vue-pwa-vue-js-%EC%A4%91%EA%B8%89)
