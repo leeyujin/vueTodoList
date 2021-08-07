@@ -18,34 +18,34 @@ import TodoList from "@/components/TodoList";
 import TodoFooter from "@/components/TodoFooter";
 
 export default {
-  data : function (){
+  data(){
     return {
       todoItems : []
     }
   },
   methods : {
-    addTodoItem : function (todoItem){
-      let obj = {item : todoItem, completed : false}
+    addTodoItem(todoItem){
+      const obj = {item : todoItem, completed : false}
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeTodoItem : function(removeItem, index){
+    removeTodoItem(removeItem, index){
       localStorage.removeItem(removeItem);
       this.todoItems.splice(index,1);
     },
-    toggleTodoItem : function (todoItem,index){
+    toggleTodoItem(todoItem,index){
       // anti pattern. 하위 오브젝트에서 직접 상위 오브젝트값 참조
       // todoItem.completed = ! todoItem.completed;
       this.todoItems[index].completed = !this.todoItems[index].completed
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
-    clearTodoItem : function (){
+    clearTodoItem(){
       localStorage.clear();
       this.todoItems = [];
     }
   },
-  created : function (){
+  created(){
     if ( localStorage.length > 0 ){
       for( let i = 0 ; i < localStorage.length ; i ++) {
         if( localStorage.key(i) !== 'loglevel:webpack-dev-server' ){
